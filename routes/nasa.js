@@ -15,4 +15,8 @@ router.get('/mars', async function(req, res) {
   nasaController.getMarsPicture(req, res);
 });
 
+router.post('/apod', async function(req, res) {    
+  nasaController.savePictureOfToday(req, res);
+});
+
 module.exports = router;

@@ -2,7 +2,7 @@ const axios = require('axios');
 const { response } = require('express');
 const querystring = require('querystring');
 const apiKey = process.env.API_KEY;
-
+const apodMongoService = require('../services/database/apod.mongo.services');
 async function getIndex(req, res){
     res.json({message: 'This is the Nasa root router'})
 }
@@ -37,4 +37,8 @@ async function getMarsPicture(req, res){
     }) 
 }
 
-module.exports = {getIndex,getPictureOfTheDate,getMarsPicture};
+async function savePictureOfToday(req, res){
+   res.json(await apodMongoService.saveApod());
+} 
+
+module.exports = {getIndex,getPictureOfTheDate,getMarsPicture, savePictureOfToday};
